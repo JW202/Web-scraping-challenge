@@ -16,8 +16,8 @@ def index():
 def scrape():
     mars_data = scrape_mars.scrape()
 
-    mongo.db.collection.update({}, mars_data, upsert=True)
-
+    mongo.db.collection.update_one({}, {"$set": mars_data}, upsert=True)
+   
     return redirect("/")
 
 if __name__ == "__main__":
